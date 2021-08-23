@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" th:action="@{/addNewTopic}" th:object="${category}">
+    <input name="topicTitle" type="text" placeholder="New topic"/>
+    <div class="form-group">
+    <label>Category</label>
+    <select class="form-select" id="topicCategory" name="topicCategory">
+        <option  th:each="topicCategories:${T(com.example.group6project.enums.TopicCategory).values()}"
+                 th:value="${topicCategories}"
+                 th:text="${topicCategories}">
+
+        </option>
+
+    </select>
+    </div>
+    <input type="submit" value="Add new Topic"/>
+</form>
+</body>
+</html>
