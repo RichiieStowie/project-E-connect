@@ -4,16 +4,11 @@ import com.example.group6project.dto.CategoryDto;
 import com.example.group6project.enums.TopicCategory;
 import com.example.group6project.enums.TopicStatus;
 import com.example.group6project.models.Comments;
-import com.example.group6project.models.Person;
 import com.example.group6project.models.Topic;
-import com.example.group6project.repository.TopicRepository;
 import com.example.group6project.service.CommentService;
 import com.example.group6project.service.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,7 +25,9 @@ public class AdminController  {
     public String displayAllAvailableTopics(Model model){
         List<Topic> topicList= topicService.displayAllTopicsAvailable(TopicStatus.NOT_DELETED);
         model.addAttribute("topicList",topicList);
-        return "index";
+        String keyword="";
+        model.addAttribute("keyword",keyword);
+        return "adminHomePage";
     }
 
     @GetMapping(value = "/addNewTopic")
@@ -60,8 +57,17 @@ public class AdminController  {
     @GetMapping(value = "/displayCommentsForAdmin/{id}")
     public  String loadCommentsPageForAdmin(Model model,@PathVariable(name = "id")Long id){
       List<Comments>commentsList=commentService.displayAllCommentsOnATopic(id);
+      //get user atttribute from session here
       model.addAttribute("comments",commentsList);
       return "adminCommentsView";
+    }
+
+    @PostMapping( value = "/searchBar")
+    public String displaySearchResults(@RequestParam(name = "keyword")String keyword,Model model){
+        model.addAttribute("keyword",keyword);
+        List<Topic>topicList=topicService.displayAllSearchedTopics(keyword);
+        model.addAttribute("searchedTopics",topicList);
+        return "searchPage";
     }
 
 

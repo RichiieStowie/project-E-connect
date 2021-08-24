@@ -49,4 +49,9 @@ public class TopicServiceImpl implements TopicService {
         topic1.setTopicStatus(TopicStatus.DELETED);
         topicRepository.save(topic1);
     }
+
+    @Override
+    public List<Topic> displayAllSearchedTopics(String keyword) {
+        return topicRepository.findTopicByKeyword(keyword);
+    }
 }

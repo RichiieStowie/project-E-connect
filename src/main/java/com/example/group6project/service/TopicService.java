@@ -19,4 +19,5 @@ public interface TopicService {
     List<Topic>displayAllTopicsAvailable(TopicStatus topicStatus);
     void deleteTopic(Long id);
     List<Topic>displayTopicByCategory(TopicCategory topicCategory,TopicStatus topicStatus);
+    List<Topic>displayAllSearchedTopics(String keyword);
 }
