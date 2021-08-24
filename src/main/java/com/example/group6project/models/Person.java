@@ -4,7 +4,6 @@ import lombok.Data;
 
 import javax.persistence.Entity;
 
-
 @Entity
 @Data
 public class Person extends BaseModel{
@@ -14,5 +13,4 @@ public class Person extends BaseModel{
     private String username;
     private String password;
     private String userType;
-
 }
