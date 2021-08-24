@@ -1,6 +1,7 @@
 package com.example.group6project.models;
 
 import com.example.group6project.enums.TopicCategory;
+import com.example.group6project.enums.TopicStatus;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -15,10 +16,11 @@ public class Topic extends BaseModel{
     private String topicTitle;
     private LocalDate dateCreated;
     private LocalTime timeCreated;
-    private Boolean topicStatus;
+
+    @Enumerated(EnumType.STRING)
+    private TopicStatus topicStatus;
     @Enumerated(EnumType.STRING)
     private TopicCategory topicCategory;
 
-     @OneToMany
-    private List<Comments> commentsList;
+
 }

@@ -6,9 +6,6 @@ import com.example.group6project.models.Topic;
 
 import java.util.List;
 
-public interface CommentsService { ;
-    List<Comments> findAllCommentsByTopicAndId(Long id);
-    void postComment(Person person, Topic topic);
-
+public interface CommentsService {
 
 }

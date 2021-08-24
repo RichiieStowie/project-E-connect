@@ -15,33 +15,5 @@ import java.util.List;
 
 @Service
 public class CommentsServiceImpl implements CommentsService {
-    @Autowired
-    private CommentsRepository commentsRepository;
-    @Autowired
-    private TopicService topicService;
-
-
-
-    @Override
-    public List<Comments> findAllCommentsByTopicAndId(Long id) {
-    Topic topic1 = topicService.findById(id);
-     return commentsRepository.findCommentsByTopic(topic1);
-
-    }
-
-    @Override
-    public void postComment(Person person, Topic topic) {
-        LocalDate localDate = LocalDate.now();
-        LocalTime localTime = LocalTime.now();
-            Comments comments = new Comments();
-            comments.setLocalTime(localTime);
-            comments.setLocalDate(localDate);
-            comments.setPerson(person);
-            comments.setTopic(topic);
-            commentsRepository.save(comments);
-
-    }
-
-
 
 }
