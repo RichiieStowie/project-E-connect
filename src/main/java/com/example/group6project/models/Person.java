@@ -14,8 +14,9 @@ public class Person extends BaseModel{
     private String firstName;
     private String lastName;
     private String email;
+    private String username;
     private String password;
-    private String userName;
+    private String userType;
 //    @ManyToMany
 //    private List<Comments> listOfComments;
 }

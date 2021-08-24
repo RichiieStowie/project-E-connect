@@ -34,7 +34,6 @@ public class AdminController  {
         public String getNewTopicPage(Model model){
         model.addAttribute("category",new CategoryDto());
         List<TopicCategory>categories= List.of(TopicCategory.values());
-        System.out.println(categories);
         model.addAttribute("categories",categories);
         return "addTopic";
     }
@@ -49,7 +48,6 @@ public class AdminController  {
 
     @PostMapping(value = "addNewTopic")
     public String addNewTopic(Model model, @ModelAttribute("category")CategoryDto categoryDto){
-        System.out.println(categoryDto.getTopicCategory());
         topicService.createNewTopic(categoryDto);
         return "redirect:/"; // replace with admin view page
     }
