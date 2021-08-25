@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequiredArgsConstructor
 public class Login_signupController {
@@ -22,18 +24,22 @@ public class Login_signupController {
 
     @GetMapping("/")
     public String homePage (Model model){
-        model.addAttribute(new Person());
+        model.addAttribute("User",new Person());
         return "Login";
     }
 
-    @GetMapping("/login")
-    public String login ( ){
-        return "Login";
-    }
+    //    @GetMapping("/login")
+//    public String login ( ){
+//        return "Login";
+//    }
+//    @PostMapping("/login")
+//    public ModelAndView login(@ModelAttribute("User") Person person, ModelAndView modelAndView){
+//        login_signupService.login(person, modelAndView);
+//        return modelAndView;
+//    }
     @PostMapping("/login")
-    public ModelAndView login(@ModelAttribute("User") Person person, ModelAndView modelAndView){
-        login_signupService.login(person, modelAndView);
-        return modelAndView;
+    public String loginUser(@ModelAttribute("User")Person person, Model model, HttpSession session){
+        return login_signupService.loginUser(person.getEmail(),person.getPassword(),session,model);
     }
 
     @GetMapping("/registration")
@@ -45,6 +51,12 @@ public class Login_signupController {
     public String register (@ModelAttribute("Person") Person person, Model model){
         login_signupService.register(person);
         return "UserHomePage";
+    }
+
+    @GetMapping(value = "/logOut")
+    public String logout(HttpSession session){
+        session.invalidate();
+        return "redirect:/";
     }
 
 }

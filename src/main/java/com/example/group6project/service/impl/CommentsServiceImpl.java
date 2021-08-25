@@ -10,6 +10,7 @@ import com.example.group6project.service.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -22,11 +23,14 @@ public class CommentsServiceImpl implements CommentService {
     @Autowired
     private TopicRepository topicRepository;
     @Override
-    public void createNewComment(Topic topic, Person person,String commentBody) {
+    public void createNewComment(HttpSession session, Person person,String commentBody) {
+//        Topic topic = topicRepository.findTopicById(id);
+        Topic topic = (Topic) session.getAttribute("topic");
         LocalDate localDate= LocalDate.now();
         LocalTime localTime=LocalTime.now();
         Comments comments= new Comments();
         comments.setPerson(person);
+        comments.setTopic(topic);
         comments.setCommentBody(commentBody);
         comments.setLocalTime(localTime);
         comments.setLocalDate(localDate);
@@ -36,8 +40,9 @@ public class CommentsServiceImpl implements CommentService {
 
 
 
-    public List<Comments> displayAllCommentsOnATopic(Long id) {
-      Topic topic = topicRepository.findTopicById(id);
-       return commentsRepository.findCommentsByTopic(topic);
+    public List<Comments> displayAllCommentsOnATopic(Long id, HttpSession session) {
+        Topic topic = topicRepository.findTopicById(id);
+        session.setAttribute("topic",topic);
+        return commentsRepository.findCommentsByTopic(topic);
     }
 }

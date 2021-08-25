@@ -18,7 +18,7 @@ import java.util.List;
 @Service
 public class TopicServiceImpl implements TopicService {
     @Autowired
-   private TopicRepository topicRepository;
+    private TopicRepository topicRepository;
     @Override
     public void createNewTopic(CategoryDto categoryDto) {
 
@@ -30,7 +30,7 @@ public class TopicServiceImpl implements TopicService {
         topic1.setTopicCategory(categoryDto.getTopicCategory());
         topic1.setDateCreated(localDate);
         topic1.setTimeCreated(localTime);
-     topicRepository.save(topic1);
+        topicRepository.save(topic1);
     }
 
     @Override

@@ -2,10 +2,10 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Comments Page</title>
 </head>
 <body>
-<a th:href="@{/displayCommentsForAdmin}">Post your comment</a>
+<!--<a th:href="@{/postNewComment/{id}(id=${User.id})}">Add new Comment</a>-->
 <form th:action="@{/postNewComment}" method="get" th:object="${Body}">
     <textarea  style="width: 20%; height: 10vh;"name="commentBody"  placeholder="post your comment"></textarea>
     <input type="submit" value="Post">
