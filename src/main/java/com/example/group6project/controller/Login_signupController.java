@@ -42,7 +42,7 @@ public class Login_signupController {
         return login_signupService.loginUser(person.getEmail(),person.getPassword(),session,model);
     }
 
-    @GetMapping("/registration")
+    @GetMapping("/regMap")
     public String registration ( ){
         return "registrationPage";
     }
@@ -50,7 +50,7 @@ public class Login_signupController {
     @PostMapping("/registration")
     public String register (@ModelAttribute("Person") Person person, Model model){
         login_signupService.register(person);
-        return "UserHomePage";
+        return "Login";
     }
 
     @GetMapping(value = "/logOut")

@@ -39,7 +39,7 @@ public class UserController {
     public String viewAllComments(Model model, HttpSession session, @PathVariable(name = "id")Long id){
         Person user= (Person) session.getAttribute("User");
         System.out.println(user);
-        List<Comments>commentsList=commentService.displayAllCommentsOnATopic(id,session);
+        List<Comments>commentsList=commentService.displayAllCommentsOnATopic(id,session,model);
         model.addAttribute("User",user);
         model.addAttribute("comments",commentsList);
         model.addAttribute("Body",new Comments());

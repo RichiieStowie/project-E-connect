@@ -6,6 +6,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 @Entity
@@ -16,6 +17,7 @@ public class Topic extends BaseModel{
     private String topicTitle;
     private LocalDate dateCreated;
     private LocalTime timeCreated;
+    private LocalDateTime localDateTime;
 
     @Enumerated(EnumType.STRING)
     private TopicStatus topicStatus;

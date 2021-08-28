@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -18,6 +19,7 @@ public class Comments extends BaseModel{
     private LocalDate localDate;
     @DateTimeFormat(pattern = "hh:mm:ss")
     private LocalTime localTime;
+    private LocalDateTime localDateTime;
     @ManyToOne
     private Topic topic;
     @ManyToOne

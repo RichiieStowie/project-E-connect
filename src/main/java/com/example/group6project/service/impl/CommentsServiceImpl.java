@@ -8,10 +8,13 @@ import com.example.group6project.repository.TopicRepository;
 import com.example.group6project.service.CommentService;
 import com.example.group6project.service.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
@@ -28,6 +31,7 @@ public class CommentsServiceImpl implements CommentService {
         Topic topic = (Topic) session.getAttribute("topic");
         LocalDate localDate= LocalDate.now();
         LocalTime localTime=LocalTime.now();
+        LocalDateTime localDateTime= LocalDateTime.now();
         Comments comments= new Comments();
         comments.setPerson(person);
         comments.setTopic(topic);
@@ -35,14 +39,16 @@ public class CommentsServiceImpl implements CommentService {
         comments.setLocalTime(localTime);
         comments.setLocalDate(localDate);
         comments.setTopic(topic);
+        comments.setLocalDateTime(localDateTime);
         commentsRepository.save(comments);
     }
 
 
 
-    public List<Comments> displayAllCommentsOnATopic(Long id, HttpSession session) {
+    public List<Comments> displayAllCommentsOnATopic(Long id, HttpSession session, Model model) {
         Topic topic = topicRepository.findTopicById(id);
         session.setAttribute("topic",topic);
-        return commentsRepository.findCommentsByTopic(topic);
+        model.addAttribute("topic",topic);
+        return commentsRepository.findALLByTopicOrderByLocalDateTimeDesc(topic);
     }
 }
