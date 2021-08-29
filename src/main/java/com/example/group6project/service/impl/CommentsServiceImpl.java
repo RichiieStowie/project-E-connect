@@ -25,6 +25,8 @@ public class CommentsServiceImpl implements CommentService {
     private CommentsRepository commentsRepository;
     @Autowired
     private TopicRepository topicRepository;
+
+
     @Override
     public void createNewComment(HttpSession session, Person person,String commentBody) {
 //        Topic topic = topicRepository.findTopicById(id);
