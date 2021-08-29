@@ -21,6 +21,8 @@ public class CommentsServiceImpl implements CommentService {
     private CommentsRepository commentsRepository;
     @Autowired
     private TopicRepository topicRepository;
+
+
     @Override
     public void createNewComment(Topic topic, Person person,String commentBody) {
         LocalDate localDate= LocalDate.now();
